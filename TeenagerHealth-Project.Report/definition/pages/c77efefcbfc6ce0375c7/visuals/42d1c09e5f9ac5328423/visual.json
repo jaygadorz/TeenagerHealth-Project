@@ -1,0 +1,171 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "42d1c09e5f9ac5328423",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1000,
+    "height": 300,
+    "width": 907,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "platformDIM"
+                    }
+                  },
+                  "Property": "adminpub_platformusage"
+                }
+              },
+              "queryRef": "platformDIM.adminpub_platformusage",
+              "nativeQueryRef": "adminpub_platformusage",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "stagingTBL"
+                    }
+                  },
+                  "Property": "adminpub_age"
+                }
+              },
+              "queryRef": "stagingTBL.adminpub_age",
+              "nativeQueryRef": "Sum of adminpub_age",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure"
+                    }
+                  },
+                  "Property": "ave daily social media hours"
+                }
+              },
+              "queryRef": "Measure.AVERAGEvalue",
+              "nativeQueryRef": "ave daily social media hours"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure"
+                    }
+                  },
+                  "Property": "total social media hours"
+                }
+              },
+              "queryRef": "Measure.total social media hours",
+              "nativeQueryRef": "total social media hours"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure"
+                    }
+                  },
+                  "Property": "total screen time before sleep (hrs)"
+                }
+              },
+              "queryRef": "Measure.total screen time before sleep (hrs)",
+              "nativeQueryRef": "total screen time before sleep (hrs)"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "platformDIM.adminpub_platformusage"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "platformDIM"
+                    }
+                  },
+                  "Property": "adminpub_platformusage"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "stagingTBL.adminpub_age"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "stagingTBL"
+                    }
+                  },
+                  "Property": "adminpub_age"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'TikTok'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Instagram'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  }
+}

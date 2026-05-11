@@ -1,0 +1,69 @@
+expression tbl-Name = "adminpub_tabledata" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: 53ba5ee6-4468-4bc5-8f51-2120ae46bf3f
+	queryGroup: source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression Source =
+		let
+		    Source = CommonDataService.Database(envID)
+		in
+		    Source
+	lineageTag: b323ef5f-090c-4397-b753-2947f9e2f351
+	queryGroup: source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression envID =
+		let
+		    Source = "orgb6ad5449.crm4.dynamics.com"
+		in
+		    Source
+	lineageTag: e2c6fc2f-26f2-4db4-bc5c-375804aa84cc
+	queryGroup: source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression columnConfig = ```
+		let
+		    Source = CommonDataService.Database(envID),
+		    Filtered = Table.SelectRows(Source, each ([Name] = #"tbl-Name")),
+		
+		    Expanded = 
+		        Table.ExpandTableColumn(Filtered,
+		        "Data",
+		        Table.ColumnNames(Filtered{0}[Data])
+		        ),
+		    
+		    Top1 = 
+		        Table.FirstN(Expanded, 1),
+		
+		    Headers = 
+		        Table.ColumnNames(Top1),
+		
+		    TableView = Table.FromList(Headers, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		
+		    FilteredInitial = Table.SelectRows(TableView, each ([Column1] = 
+		    "adminpub_academicperformance" or [Column1] = "adminpub_addictionlevel" or [Column1] = "adminpub_age" or 
+		    [Column1] = "adminpub_anxietylevel" or [Column1] = "adminpub_dailysocialmediahours" or [Column1] = "adminpub_depressionlabel2" or 
+		    [Column1] = "adminpub_gender" or [Column1] = "adminpub_physicalactivity" or [Column1] = "adminpub_platformusage" or 
+		    [Column1] = "adminpub_screentimebeforesleep" or [Column1] = "adminpub_sleephours" or [Column1] = "adminpub_socialinteractionlevel" or [Column1] = "adminpub_stresslevel")),
+		
+		
+		    ListView = FilteredInitial[Column1]
+		
+		in
+		   ListView
+		```
+	lineageTag: bfc112e5-d7bf-4e52-98b2-897b2a8b07f7
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = List
+

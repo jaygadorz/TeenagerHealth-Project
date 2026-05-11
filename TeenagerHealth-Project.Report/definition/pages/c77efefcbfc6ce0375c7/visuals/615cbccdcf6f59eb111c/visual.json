@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "615cbccdcf6f59eb111c",
+  "position": {
+    "x": 0,
+    "y": 321,
+    "z": 3000,
+    "height": 326,
+    "width": 778,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "stagingTBL"
+                    }
+                  },
+                  "Property": "adminpub_age"
+                }
+              },
+              "queryRef": "stagingTBL.adminpub_age",
+              "nativeQueryRef": "adminpub_age",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure"
+                    }
+                  },
+                  "Property": "ave daily social media hours"
+                }
+              },
+              "queryRef": "Measure.ave daily social media hours",
+              "nativeQueryRef": "ave daily social media hours",
+              "displayName": "ave daily social media hours"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure"
+                    }
+                  },
+                  "Property": "total screen time before sleep (hrs)"
+                }
+              },
+              "queryRef": "Measure.total screen time before sleep (hrs)",
+              "nativeQueryRef": "total screen time before sleep (hrs)",
+              "displayName": "total screen time before sleep (hrs)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure"
+                    }
+                  },
+                  "Property": "total social media hours"
+                }
+              },
+              "queryRef": "Measure.total social media hours",
+              "nativeQueryRef": "total social media hours",
+              "displayName": "total social media hours"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Demo - Measures"
+                    }
+                  },
+                  "Property": "Demo - Measures"
+                }
+              },
+              "index": 0,
+              "length": 3
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Measure"
+                  }
+                },
+                "Property": "ave daily social media hours"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "lineStyles": [
+        {
+          "properties": {
+            "lineChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'smooth'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

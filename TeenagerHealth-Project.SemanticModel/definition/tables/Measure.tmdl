@@ -1,0 +1,47 @@
+table Measure
+	lineageTag: 7e0f68de-5723-44e7-ac27-da13a0fc8741
+
+	measure 'ave daily social media hours' = ```
+			
+			
+			 CALCULATE(
+			    AVERAGEX(
+			            stagingTBL,
+			            stagingTBL[adminpub_dailysocialmediahours]
+			    
+			 ))
+			```
+		formatString: 0
+		lineageTag: 400b6c06-f544-4e0c-b2ca-43bfcf376fe6
+
+	measure 'total social media hours' = CALCULATE(SUM(stagingTBL[adminpub_dailysocialmediahours]))
+		lineageTag: 2bed650a-6d22-471f-adb9-9a74af056e33
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'total screen time before sleep (hrs)' = CALCULATE(SUM(stagingTBL[adminpub_screentimebeforesleep]))
+		lineageTag: 4a114080-42cc-441f-b98b-138ecb72c646
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure currentUser = USERPRINCIPALNAME()
+		lineageTag: d2ec9db9-8fde-4202-abb3-39c40f681edf
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 55518eed-17ef-490b-9e77-4f35f42a0472
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Measure = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 0741ed2e497f402f90196d4590460236
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

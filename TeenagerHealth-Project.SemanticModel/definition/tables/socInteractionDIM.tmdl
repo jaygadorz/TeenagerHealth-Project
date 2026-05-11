@@ -1,0 +1,25 @@
+table socInteractionDIM
+	lineageTag: 30ecb3cb-6c97-4823-a221-6661ab775fe0
+
+	column adminpub_socialinteractionlevel
+		dataType: string
+		lineageTag: 04e5a11d-5069-4dec-8a1e-08d69aefcf5c
+		summarizeBy: none
+		sourceColumn: adminpub_socialinteractionlevel
+
+		annotation SummarizationSetBy = Automatic
+
+	partition socInteractionDIM = m
+		mode: import
+		source =
+				let
+				    Source = stagingTBL,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"adminpub_socialinteractionlevel"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

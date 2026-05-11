@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "TeenagerHealth-Project"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d939b0b0-6716-45da-a257-e439d2a2ca22"
+  }
+}

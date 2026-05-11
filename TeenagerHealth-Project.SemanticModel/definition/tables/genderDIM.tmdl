@@ -1,0 +1,25 @@
+table genderDIM
+	lineageTag: c5c03288-e299-4bda-ba87-cca2966f50d5
+
+	column adminpub_gender
+		dataType: string
+		lineageTag: cd286954-3a3b-4285-84ec-e602e9bc3d66
+		summarizeBy: none
+		sourceColumn: adminpub_gender
+
+		annotation SummarizationSetBy = Automatic
+
+	partition genderDIM = m
+		mode: import
+		source =
+				let
+				    Source = stagingTBL,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"adminpub_gender"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

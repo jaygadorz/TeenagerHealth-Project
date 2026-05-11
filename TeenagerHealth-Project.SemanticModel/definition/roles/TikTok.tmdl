@@ -1,0 +1,7 @@
+role TikTok
+	modelPermission: read
+
+	tablePermission platformDIM = [adminpub_platformusage] == "TikTok"
+
+	annotation PBI_Id = a24b3a96b16a4d1d9d2730cd77a1cb82
+

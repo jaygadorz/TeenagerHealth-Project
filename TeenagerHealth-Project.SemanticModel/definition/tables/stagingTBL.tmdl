@@ -1,0 +1,155 @@
+table stagingTBL
+	lineageTag: a5d3b606-a4d8-4c9e-8978-b8200d104b1d
+
+	column adminpub_age
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c4696af-50c6-4b5d-b369-b9ccc8bb2f58
+		summarizeBy: sum
+		sourceColumn: adminpub_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column adminpub_gender
+		dataType: string
+		lineageTag: 3863adb4-7d3c-4e95-91ae-304211d91659
+		summarizeBy: none
+		sourceColumn: adminpub_gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column adminpub_dailysocialmediahours
+		dataType: double
+		lineageTag: 861042da-9e80-42b2-8cd2-232fe5c7061d
+		summarizeBy: sum
+		sourceColumn: adminpub_dailysocialmediahours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adminpub_platformusage
+		dataType: string
+		lineageTag: 9b5131aa-5484-4011-87bb-5656e9581a2d
+		summarizeBy: none
+		sourceColumn: adminpub_platformusage
+
+		annotation SummarizationSetBy = Automatic
+
+	column adminpub_sleephours
+		dataType: double
+		lineageTag: ba53adad-becd-4a18-8959-29a9af2bdd28
+		summarizeBy: sum
+		sourceColumn: adminpub_sleephours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adminpub_screentimebeforesleep
+		dataType: double
+		lineageTag: 0d1b964e-55f7-4d42-84b8-2d940ca8243a
+		summarizeBy: sum
+		sourceColumn: adminpub_screentimebeforesleep
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adminpub_academicperformance
+		dataType: double
+		lineageTag: 605900b1-cfa2-4627-8dd8-82ad01603a4c
+		summarizeBy: sum
+		sourceColumn: adminpub_academicperformance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adminpub_physicalactivity
+		dataType: double
+		lineageTag: 6f0e38eb-1135-400b-ac8c-f5e20e31e412
+		summarizeBy: sum
+		sourceColumn: adminpub_physicalactivity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adminpub_socialinteractionlevel
+		dataType: string
+		lineageTag: acd36cf6-3348-4e84-8cf9-2f459ca33dfc
+		summarizeBy: none
+		sourceColumn: adminpub_socialinteractionlevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column adminpub_stresslevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ab6654e-9520-4832-bd81-fac8e5fd2802
+		summarizeBy: sum
+		sourceColumn: adminpub_stresslevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column adminpub_anxietylevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fe855d0-7286-46be-ae67-b890ebf27a98
+		summarizeBy: sum
+		sourceColumn: adminpub_anxietylevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column adminpub_addictionlevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 91516af4-df8c-42a2-b968-091fc80ecbb3
+		summarizeBy: sum
+		sourceColumn: adminpub_addictionlevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column adminpub_depressionlabel2
+		dataType: int64
+		formatString: 0
+		lineageTag: 0765a7f4-536b-40dc-a86e-6155e2aafef2
+		summarizeBy: sum
+		sourceColumn: adminpub_depressionlabel2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition stagingTBL = m
+		mode: import
+		source = ```
+				let
+				    Source = CommonDataService.Database(envID),
+				
+				    Filtered = 
+				        Table.SelectRows(Source, each ([Name] = #"tbl-Name")),
+				
+				     Expanded = 
+				        Table.ExpandTableColumn(Filtered,
+				        "Data",
+				            columnConfig
+				        ),
+				
+				// should be existing in the columnConfig list
+				    Cleaned =
+				        Table.SelectColumns(
+				            Expanded,
+				            List.Intersect({
+				                Table.ColumnNames(Expanded),
+				                columnConfig
+				            })
+				        ),
+				    #"Changed Type" = Table.TransformColumnTypes(Cleaned,{{"adminpub_age", Int64.Type}, {"adminpub_gender", type text}, {"adminpub_dailysocialmediahours", type number}, {"adminpub_platformusage", type text}, {"adminpub_sleephours", type number}, {"adminpub_screentimebeforesleep", type number}, {"adminpub_academicperformance", type number}, {"adminpub_physicalactivity", type number}, {"adminpub_socialinteractionlevel", type text}, {"adminpub_stresslevel", Int64.Type}, {"adminpub_anxietylevel", Int64.Type}, {"adminpub_addictionlevel", Int64.Type}, {"adminpub_depressionlabel2", Int64.Type}})
+				in
+				    #"Changed Type"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

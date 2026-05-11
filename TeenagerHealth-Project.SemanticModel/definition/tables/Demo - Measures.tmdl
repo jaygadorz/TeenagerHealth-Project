@@ -1,0 +1,49 @@
+table 'Demo - Measures'
+	lineageTag: 2f0af846-b8c8-4caa-9e74-6e5505a5323a
+
+	column 'Demo - Measures'
+		lineageTag: a5cd426a-3a96-4248-b4d0-ebb433c3e62c
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Demo - Measures Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Demo - Measures Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demo - Measures Fields'
+		isHidden
+		lineageTag: d45c224e-c280-4809-9668-915903e4c7e6
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Demo - Measures Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demo - Measures Order'
+		isHidden
+		formatString: 0
+		lineageTag: b54e4208-303f-4a04-8be4-e00a9a19ab27
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Demo - Measures' = calculated
+		mode: import
+		source =
+				{
+				    ("ave daily social media hours", NAMEOF('Measure'[ave daily social media hours]), 0),
+				    ("total screen time before sleep (hrs)", NAMEOF('Measure'[total screen time before sleep (hrs)]), 1),
+				    ("total social media hours", NAMEOF('Measure'[total social media hours]), 2)
+				}
+
+	annotation PBI_Id = a25a60238213404e8808d853751bbe20
+

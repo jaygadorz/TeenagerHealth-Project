@@ -1,0 +1,25 @@
+table platformDIM
+	lineageTag: 89151431-20a8-4006-8dbc-1ac65d71636a
+
+	column adminpub_platformusage
+		dataType: string
+		lineageTag: eb22468e-b64d-4119-a5a8-c4f9172ab01f
+		summarizeBy: none
+		sourceColumn: adminpub_platformusage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition platformDIM = m
+		mode: import
+		source =
+				let
+				    Source = stagingTBL,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"adminpub_platformusage"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

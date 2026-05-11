@@ -1,0 +1,141 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "67522091c57b47691bbd",
+  "position": {
+    "x": 34,
+    "y": 221,
+    "z": 1000,
+    "height": 476,
+    "width": 453,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "stagingTBL"
+                    }
+                  },
+                  "Property": "adminpub_platformusage"
+                }
+              },
+              "queryRef": "stagingTBL.adminpub_platformusage",
+              "nativeQueryRef": "adminpub_platformusage",
+              "active": false,
+              "displayName": "adminpub_platformusage"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "stagingTBL"
+                    }
+                  },
+                  "Property": "adminpub_age"
+                }
+              },
+              "queryRef": "stagingTBL.adminpub_age",
+              "nativeQueryRef": "adminpub_age",
+              "active": true,
+              "displayName": "adminpub_age"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Demo - Columns"
+                    }
+                  },
+                  "Property": "Demo - Columns"
+                }
+              },
+              "index": 0,
+              "length": 2
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "stagingTBL"
+                        }
+                      },
+                      "Property": "adminpub_dailysocialmediahours"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(stagingTBL.adminpub_dailysocialmediahours)",
+              "nativeQueryRef": "Sum of adminpub_dailysocialmediahours"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "stagingTBL"
+                  }
+                },
+                "Property": "adminpub_platformusage"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "stagingTBL"
+                  }
+                },
+                "Property": "adminpub_age"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

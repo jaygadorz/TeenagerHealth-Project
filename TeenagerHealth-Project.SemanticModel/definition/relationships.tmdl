@@ -1,0 +1,12 @@
+relationship AutoDetected_5af217e2-9ce5-413d-996c-8c07d9db03da
+	fromColumn: stagingTBL.adminpub_gender
+	toColumn: genderDIM.adminpub_gender
+
+relationship AutoDetected_f697e552-a133-429e-ac4a-4cdddd3a5176
+	fromColumn: stagingTBL.adminpub_platformusage
+	toColumn: platformDIM.adminpub_platformusage
+
+relationship AutoDetected_3ed26403-8fe6-4aaa-865d-d873c12627a6
+	fromColumn: stagingTBL.adminpub_socialinteractionlevel
+	toColumn: socInteractionDIM.adminpub_socialinteractionlevel
+

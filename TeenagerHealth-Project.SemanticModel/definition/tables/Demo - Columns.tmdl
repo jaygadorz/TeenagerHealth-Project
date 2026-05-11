@@ -1,0 +1,48 @@
+table 'Demo - Columns'
+	lineageTag: 6ac879e0-e422-40eb-ad8e-bf255d0c49dc
+
+	column 'Demo - Columns'
+		lineageTag: 31459c52-30bf-4e2d-859e-c5186ecda00c
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Demo - Columns Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Demo - Columns Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demo - Columns Fields'
+		isHidden
+		lineageTag: da4cd914-870a-40b9-a07a-24564611d303
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Demo - Columns Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demo - Columns Order'
+		isHidden
+		formatString: 0
+		lineageTag: 9f6b27ca-0db2-4421-8599-3e27414179e7
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Demo - Columns' = calculated
+		mode: import
+		source =
+				{
+				    ("adminpub_platformusage", NAMEOF('stagingTBL'[adminpub_platformusage]), 0),
+				    ("adminpub_age", NAMEOF('stagingTBL'[adminpub_age]), 1)
+				}
+
+	annotation PBI_Id = da8a461a56b44df5a2712890fa125e1b
+
