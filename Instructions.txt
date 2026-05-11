@@ -34,3 +34,12 @@ git push -u origin main
 
 //  How to Always Know You're in the Right Repo (Forever Rule)
 git remote -v
+
+
+//  push changes
+
+git status
+git add .
+git commit -m "Meaningful message"
+git push
+``
