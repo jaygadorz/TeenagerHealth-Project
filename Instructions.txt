@@ -18,3 +18,19 @@ pwd
 Which folder you’re in
 git status If Git is active
 git remote -vWHICH repo (GitHub)
+
+
+// check untracked files 
+git status
+
+// add files in repo
+git add .
+git commit -m "comment"
+
+// push to github repo + main branch
+git push -u origin main
+
+
+
+//  How to Always Know You're in the Right Repo (Forever Rule)
+git remote -v

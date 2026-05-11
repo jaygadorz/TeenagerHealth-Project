@@ -1,4 +1,4 @@
-# Power BI CI Beginner Repository
+# Power BI CI/CD Repository
 
 This repository contains a sample Power BI (.pbip).
 
